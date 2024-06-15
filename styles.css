@@ -1,0 +1,97 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to right, #282a2d, #3a3d41);
+  overflow-y: scroll;
+  max-width: 1200px;
+  transition: all 0.3s ease;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#notes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  width: 100%;
+  padding-bottom: 32px;
+}
+
+.note {
+  position: relative;
+  background: #feff9c;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  min-height: 100px;
+  transition: all 0.3s ease;
+}
+
+.note:hover {
+  transform: scale(1.02);
+}
+
+.note textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  resize: none;
+  outline: none;
+}
+
+#add-note {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #007bff, #0096ff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#add-note:hover {
+  background: linear-gradient(to right, #0096ff, #00b2ff);
+}
+
+.delete-note {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.delete-note:hover {
+  transform: scale(1.2);
+}
+
+.size-6 {
+  height: 24px;
+  width: 24px;
+}
+
+.delete-icon {
+  color: #282a2d;
+}
+
+#no-notes {
+  color: white;
+  font-size: 14px;
+}
