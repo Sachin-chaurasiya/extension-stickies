@@ -1,3 +1,17 @@
+// Author: Sachin-chaurasiya
+
+// Update the visibility of the "No notes" message
+function updateNoNotesMessage(notes) {
+  const noNotesMessage = document.getElementById('no-notes');
+  console.log('Called', notes);
+  if (notes.length === 0) {
+    noNotesMessage.style.display = 'flex';
+  } else {
+    noNotesMessage.style.display = 'none';
+  }
+}
+
+// Load the notes from storage and create note elements
 document.addEventListener('DOMContentLoaded', function () {
   const notesContainer = document.getElementById('notes-container');
   const addNoteButton = document.getElementById('add-note');
@@ -5,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Load existing notes from storage
   chrome.storage.sync.get(['notes'], function (result) {
     const notes = result.notes || [];
+    updateNoNotesMessage(notes);
     notes.forEach(createNoteElement);
   });
 
@@ -42,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const deleteButton = document.createElement('button');
+    deleteButton.title = 'Delete note';
     deleteButton.className = 'delete-note';
     deleteButton.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 delete-icon">
@@ -68,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         notes[noteIndex] = note;
       }
       chrome.storage.sync.set({ notes: notes });
+      updateNoNotesMessage(notes);
     });
   }
 
@@ -78,24 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const notes = result.notes || [];
       const updatedNotes = notes.filter((note) => note.id !== noteId);
       chrome.storage.sync.set({ notes: updatedNotes });
+      updateNoNotesMessage(updatedNotes);
     });
   }
 });
-
-// After you add or delete a note, check if there are any notes left
-function updateNoNotesMessage() {
-  const noNotesMessage = document.getElementById('no-notes');
-
-  // read the chrome storage and check if there are any notes
-  chrome.storage.sync.get(['notes'], function (result) {
-    const notes = result.notes || [];
-    if (notes.length === 0) {
-      noNotesMessage.style.display = 'block';
-    } else {
-      noNotesMessage.style.display = 'none';
-    }
-  });
-}
-
-// Call this function after adding or deleting a note
-updateNoNotesMessage();

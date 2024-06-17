@@ -7,11 +7,15 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
-    <button id="add-note">Add Note</button>
+    <div id="no-notes" style="display: none">
+      <img class="no-notes-image" src="./icon.png" alt="No notes" />
+      <p class="no-notes-text">
+        You don't have any notes yet. Click the button below to add a note.
+      </p>
+    </div>
+    <button id="add-note" title="Add Note">Add Note</button>
     <div id="notes-container"></div>
-    <p id="no-notes" style="display: none">
-      You don't have any notes. Add a note using the button above.
-    </p>
+
     <script src="script.js"></script>
   </body>
 </html>

@@ -54,6 +54,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-bottom: 16px;
 }
 
 #add-note:hover {
@@ -92,6 +93,19 @@ body {
 }
 
 #no-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.no-notes-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.no-notes-text {
   color: white;
   font-size: 14px;
 }
